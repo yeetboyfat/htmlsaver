@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head>
+		<meta charset="UTF-8">
+		<title>MATRIX</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			.top {
+				background: #2c3c51;
+			}
+			
+			.top div {
+				padding: 5px 0;
+				text-align: center;
+				color: #1291a8;
+			}
+			
+			img {
+				width: 120px;
+			}
+			
+			@media screen and (max-width: 640px) {
+				.top div{
+					padding: 10px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="head">
+			<canvas id="hacker" width="1920" height="1040"></canvas>
+		</div>
+	
+
+
+<script type="text/javascript">
+	window.onload = function() {
+		var hacker = document.getElementById("hacker");
+		var width = hacker.width = screen.width;
+		// var height = hacker.height = screen.height * 0.973;
+		// var height = hacker.height = screen.height * 0.963;
+		var height = hacker.height = window.screen.availHeight;
+		var ctx = hacker.getContext('2d');
+		var num = Math.ceil(width / 10);
+		var y = Array(num).join(0).split('');
+		var draw = function() {
+			ctx.fillStyle = 'rgba(0,0,0,.05)';
+			ctx.fillRect(0, 0, width, height);
+			ctx.fillStyle = '#0f0';
+			ctx.font = '10px Microsoft YaHei';
+			for(i = 0; i < num; i++) {
+				var x = (i * 10) + 10;
+				text = String.fromCharCode(65 + Math.random() * 62);
+				// console.log(text);
+				var y1 = y[i];
+				ctx.fillText(text, x, y1);
+				if(y1 > Math.random() * 10 * height) {
+					y[i] = 0;
+				} else {
+					y[i] = parseInt(y[i]) + 10;
+				}
+			}
+		}
+
+		Run();
+
+		function Run() {
+			Game_Interval = setInterval(draw, 30);
+		}
+	}
+</script></body></html>
